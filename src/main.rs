@@ -13,7 +13,12 @@ fn main() {
         a.AddFirst(2);
         a.AddFirst(3);
         a.AddFirst(4);
-        let b = a.Head.unwrap();
+
+        
+        a.AddLast(6);
+    
+       
+        println!("{:?}",a.Head);
 
 
 
