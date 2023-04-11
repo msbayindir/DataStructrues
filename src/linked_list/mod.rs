@@ -41,6 +41,16 @@ where T:Clone+ Debug
         temp.Next = Some(Box::new(new_node)); 
     
     }
+    pub fn AddAfter(&mut self, value:T,node:Option<Box<LinkedListNode<T>>>){
+        let mut new_node = LinkedListNode::new(value);
+        let mut temp = self.Head.as_mut().unwrap();
+        while temp.Next!=node {
+            temp = temp.Next.as_mut().unwrap();
+        }
+        new_node.Next = node.unwrap().Next;
+        temp.Next.as_mut().unwrap().Next = Some(Box::new(new_node));
 
+
+    }
     
 }
