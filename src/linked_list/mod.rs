@@ -42,6 +42,7 @@ where T:Clone+ Debug
     
     }
     pub fn AddAfter(&mut self, value:T,node:Option<Box<LinkedListNode<T>>>){
+
         let mut new_node = LinkedListNode::new(value);
         let mut temp = self.Head.as_mut().unwrap();
         while temp.Next!=node {
@@ -52,5 +53,19 @@ where T:Clone+ Debug
 
 
     }
+
+    pub fn AddBefor(&mut self,value:T,node:Option<Box<LinkedListNode<T>>>){
+        
+            let mut new_node = LinkedListNode::new(value);
+            let mut temp = self.Head.as_mut().unwrap();
+            while temp.Next!=node {
+                temp = temp.Next.as_mut().unwrap();
+            }
+            new_node.Next = node;
+            temp.Next = Some(Box::new(new_node));
+        
+    }
+
+
     
 }
