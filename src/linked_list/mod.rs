@@ -14,8 +14,10 @@ where T:Clone+ Debug
 {
     pub fn new ()->Self
     {
+
         Self { Head: None }
     }
+    //-----------------------------------Add-----------------------------------------
     pub fn AddFirst(&mut self ,value:T)
     {
         let mut new_node = LinkedListNode::new(value);
@@ -65,7 +67,30 @@ where T:Clone+ Debug
             temp.Next = Some(Box::new(new_node));
         
     }
+    //-----------------------------------Add-----------------------------------------
 
+    //-----------------------------------Remove--------------------------------------
+    pub fn RemoveLast(&mut self)->Option<Box<LinkedListNode<T>>>{
+        if self.Head == None {
+            panic!("Head is null, You can'd remove ");
+        }
+        if  self.Head.as_mut().unwrap().Next ==None {
+            let removedNode = Some(Box::new(self.Head.clone().unwrap()));
+            self.Head = None;
+            return removedNode;
+        }
+        let mut temp = self.Head.as_mut().unwrap();
+        while temp.Next != None {
+            if temp.Next.as_mut().unwrap().Next ==None {
+                break;
+            }
+            temp = temp.Next.as_mut().unwrap();
+        };
+        let removedNode = temp.Next.clone();
+        temp.Next = None;
+        removedNode
+
+    }
 
     
 }
