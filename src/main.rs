@@ -10,15 +10,16 @@ use linked_list::LinkedList;
 fn main() {
 
         let mut a = linked_list::LinkedList::new();
-        a.AddFirst(1);
-        a.AddFirst(2);
-        a.AddFirst(3);
-        a.AddFirst(4);
-        a.RemoveFirst();
-        let b = a.RemoveFirst();
+        a.add_first(1);
+        a.add_first(2);
+        a.add_first(3);
+        a.add_first(4);
+        a.remove_first();
+        let b = a.find(2);
 
 
-        println!("{:?}",a);
+
+        println!("{:?}",b.Value);
 
 
 

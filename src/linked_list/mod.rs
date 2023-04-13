@@ -4,13 +4,13 @@ pub mod linked_list_node;
 #[derive(Debug)]
 
 pub struct LinkedList<T>
-where T:Clone
+where T:Clone + PartialEq
 {
     pub Head:Option<LinkedListNode<T>>
 }
 
 impl<T> LinkedList<T> 
-where T:Clone+ Debug
+where T:Clone+ Debug+PartialEq
 {
     pub fn new ()->Self
     {
@@ -18,7 +18,7 @@ where T:Clone+ Debug
         Self { Head: None }
     }
     //-----------------------------------Add-----------------------------------------
-    pub fn AddFirst(&mut self ,value:T)
+    pub fn add_first(&mut self ,value:T)
     {
         let mut new_node = LinkedListNode::new(value);
         match self.Head {
@@ -30,7 +30,7 @@ where T:Clone+ Debug
             }
           }
     }
-    pub fn AddLast(&mut self,value:T)
+    pub fn add_last(&mut self,value:T)
     {
         let mut new_node = linked_list_node::LinkedListNode::new(value);
 
@@ -43,7 +43,7 @@ where T:Clone+ Debug
         temp.Next = Some(Box::new(new_node)); 
     
     }
-    pub fn AddAfter(&mut self, value:T,node:Option<Box<LinkedListNode<T>>>){
+    pub fn add_after(&mut self, value:T,node:Option<Box<LinkedListNode<T>>>){
 
         let mut new_node = LinkedListNode::new(value);
         let mut temp = self.Head.as_mut().unwrap();
@@ -56,7 +56,7 @@ where T:Clone+ Debug
 
     }
 
-    pub fn AddBefor(&mut self,value:T,node:Option<Box<LinkedListNode<T>>>){
+    pub fn add_befor(&mut self,value:T,node:Option<Box<LinkedListNode<T>>>){
         
             let mut new_node = LinkedListNode::new(value);
             let mut temp = self.Head.as_mut().unwrap();
@@ -70,7 +70,7 @@ where T:Clone+ Debug
     //-----------------------------------Add-----------------------------------------
 
     //-----------------------------------Remove--------------------------------------
-    pub fn RemoveLast(&mut self)->Option<Box<LinkedListNode<T>>>{
+    pub fn remove_last(&mut self)->Option<Box<LinkedListNode<T>>>{
         if self.Head == None {
             panic!("Head is null, You can'd remove ");
         }
@@ -91,11 +91,22 @@ where T:Clone+ Debug
         removedNode
 
     }
-    pub fn RemoveFirst(&mut self)->Option<LinkedListNode<T>>{
+    pub fn remove_first(&mut self)->Option<LinkedListNode<T>>{
        let temp = self.Head.clone();
        self.Head = Some(*self.Head.clone().unwrap().Next.unwrap());
        temp
         
     }
-    
+    //-----------------------------------Remove--------------------------------------
+
+    //-----------------------------------Find--------------------------------------
+    pub fn find(&mut self,value:T)->LinkedListNode<T>
+    {
+        let mut temp = self.Head.as_mut().unwrap();
+        
+        while temp.Value != Some(value.clone()){
+            temp = temp.Next.as_mut().unwrap();
+         }
+         temp.clone()
+    }
 }
