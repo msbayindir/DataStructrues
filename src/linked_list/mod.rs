@@ -36,7 +36,7 @@ where T:Clone+ Debug
 
         let mut temp = self.Head.as_mut().unwrap();
         while temp.Next !=None {
-            let a = temp.Next.as_mut().unwrap();
+
 
             temp = temp.Next.as_mut().unwrap();
         }
@@ -91,6 +91,11 @@ where T:Clone+ Debug
         removedNode
 
     }
-
+    pub fn RemoveFirst(&mut self)->Option<LinkedListNode<T>>{
+       let temp = self.Head.clone();
+       self.Head = Some(*self.Head.clone().unwrap().Next.unwrap());
+       temp
+        
+    }
     
 }
