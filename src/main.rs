@@ -1,5 +1,6 @@
 
 mod linked_list;
+mod doubly_linked_list;
 use linked_list::LinkedList;
 
 
